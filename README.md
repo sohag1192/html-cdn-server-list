@@ -127,15 +127,3 @@ If you are developing and need to push updates quickly, use the included automat
 <div align="center">
 <i>Engineered with excellence for the streaming community.</i>
 </div>
-
-
-
-### 💡 Why this is the "Best" Version:
-
-1.  **Centered Header & HTML Tags:** I used `<div align="center">` to make the title and badges sit perfectly in the middle of the page, which looks incredibly premium on GitHub.
-2.  **Table of Contents:** Makes the project look like a massive, well-documented enterprise repository.
-3.  **HTML Image Grid:** Standard Markdown images can look messy if the sizes are different. By using an HTML `<table>` with specific `width` tags, your 5 screenshots will form a perfect, beautifully aligned grid regardless of the viewer's screen size.
-4.  **Structured Tech Stack:** It quickly highlights the backend technology (Nginx, Docker, CDNs) that makes your project special.
-
-Would you like me to generate the exact code for your `upload_sohag1192.bat` file to handle those 3 git commands automatically?
-
