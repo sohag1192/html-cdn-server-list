@@ -82,6 +82,16 @@
         .section-header h2 { font-size: 1.8rem; font-weight: 600; }
         .section-badge { background: rgba(0, 240, 255, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
 
+        /* --- Search Box --- */
+        .search-box { position: relative; width: 400px; }
+        .search-box input {
+            width: 100%; background: var(--surface); border: 1px solid var(--surface-border);
+            padding: 16px 20px 16px 55px; border-radius: 30px; color: white; font-size: 1rem;
+            outline: none; transition: 0.3s; backdrop-filter: blur(10px);
+        }
+        .search-box input:focus { border-color: var(--primary); box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); }
+        .search-box i { position: absolute; left: 22px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.2rem; }
+
         /* --- Server Grid --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
 
@@ -127,8 +137,13 @@
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         /* --- Footer --- */
-        footer { margin-top: 60px; padding: 30px 0; border-top: 1px solid var(--surface-border); display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.9rem; }
+        footer { 
+            margin-top: 60px; padding: 30px 0; border-top: 1px solid var(--surface-border); 
+            display: flex; justify-content: space-between; align-items: center; 
+            color: var(--text-muted); font-size: 0.9rem; 
+        }
         footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
+        .visitor-counter img { border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 
         @media (max-width: 900px) {
             .sidebar { width: 100%; height: auto; flex-direction: row; justify-content: center; padding: 15px; position: fixed; bottom: 0; top: auto; z-index: 100; border-right: none; border-top: 1px solid var(--surface-border); }
@@ -136,6 +151,7 @@
             .main-content { margin-left: 0; padding-bottom: 100px; }
             .header { flex-direction: column; align-items: flex-start; }
             .search-box { width: 100%; }
+            footer { flex-direction: column; gap: 20px; text-align: center; } /* Footer stacks on mobile */
         }
     </style>
 </head>
@@ -192,13 +208,17 @@
 
         <footer>
             <div class="copyright">© 2015-2026 Developed by <a href="https://github.com/sohag1192" target="_blank">Md Sohag Rana</a></div>
+            
+            <div class="visitor-counter">
+                <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2Fsohag1192%2Fhtml-cdn-server-list&label=Visitors&icon=arrow-repeat&color=%23198754&message=&style=flat-square&tz=UTC" alt="Visitor Counter">
+            </div>
+
             <div class="isp-brand">Powered by <span style="color: var(--primary); font-weight: bold;">Premium Media Network</span></div>
         </footer>
     </main>
 
     <script>
         // --- 1. LIVE TV SERVER DATA ---
-        // I have added all 14 of your requested links here
         const tvServers = [
             { name: "Live TV Node 99", url: "http://10.99.99.99/" },
             { name: "Live TV Web Portal", url: "http://10.16.100.244/live-tv.php" },
@@ -220,7 +240,6 @@
         const grid = document.getElementById('tv-grid');
         
         tvServers.forEach((server, index) => {
-            // Create HTML for each card
             const cardHTML = `
                 <a href="${server.url}" target="_blank" class="card tv-card" data-index="${index}">
                     <div class="card-img-container"><i class="fa-solid fa-tv"></i></div>
@@ -237,19 +256,14 @@
         });
 
         // --- 3. SERVER STATUS SIMULATOR ---
-        // This visualizes how the UI looks. It randomly assigns Live, Offline, or Unsupported.
-        // To make this real, replace this logic with a fetch() call to a PHP script.
         setTimeout(() => {
             document.querySelectorAll('.tv-card').forEach((card, index) => {
-                // Stagger the checking animation for a cool effect
                 setTimeout(() => {
                     const badge = document.getElementById(`status-${index}`);
                     const text = badge.querySelector('.status-text');
                     
-                    // Remove checking state
                     badge.classList.remove('state-checking');
                     
-                    // Logic to simulate states (Replace with actual backend ping)
                     const rand = Math.random();
                     if (rand > 0.4) {
                         badge.classList.add('state-live');
@@ -261,9 +275,9 @@
                         badge.classList.add('state-offline');
                         text.innerText = "Server Offline";
                     }
-                }, index * 300); // 300ms delay between each card check
+                }, index * 300);
             });
-        }, 1500); // Wait 1.5 seconds before starting the checks
+        }, 1500);
 
         // --- 4. SEARCH BAR ---
         document.getElementById('searchInput').addEventListener('keyup', function(e) {
