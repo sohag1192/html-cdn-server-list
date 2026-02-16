@@ -11,6 +11,7 @@
         :root {
             --primary: #00f0ff;
             --secondary: #7000ff;
+            --movie: #ff00ea;
             --bg-base: #0a0a12;
             --surface: rgba(20, 20, 30, 0.6);
             --surface-border: rgba(255, 255, 255, 0.08);
@@ -19,8 +20,6 @@
             
             /* Status Colors */
             --status-live: #00ff88;
-            --status-offline: #ff0055;
-            --status-unsupported: #ffaa00;
             --status-checking: #00d2ff;
         }
 
@@ -72,7 +71,7 @@
         /* --- Headers --- */
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
         .welcome h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -1px; }
-        .welcome span { color: var(--primary); }
+        .welcome span { background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .welcome p { color: var(--text-muted); font-size: 1.1rem; margin-top: 5px; }
 
         .section-header {
@@ -93,46 +92,44 @@
         .search-box i { position: absolute; left: 22px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1.2rem; }
 
         /* --- Server Grid --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
 
         .card {
             background: var(--surface); border: 1px solid var(--surface-border); border-radius: 20px;
             padding: 20px; text-decoration: none; color: white; display: flex; align-items: center; gap: 20px;
             backdrop-filter: blur(10px); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden;
         }
-        .card:hover { transform: translateY(-5px); border-color: rgba(0, 240, 255, 0.5); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 240, 255, 0.1); }
+        
+        /* Hover Glows based on category */
+        .tv-card:hover { transform: translateY(-5px); border-color: rgba(255, 0, 85, 0.5); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 0, 85, 0.2); }
+        .core-card:hover { transform: translateY(-5px); border-color: rgba(0, 240, 255, 0.5); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 240, 255, 0.2); }
+        .movie-card:hover { transform: translateY(-5px); border-color: rgba(112, 0, 255, 0.5); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(112, 0, 255, 0.2); }
 
         /* Image/Icon Container */
         .card-img-container {
-            width: 70px; height: 70px; border-radius: 16px; background: rgba(255, 255, 255, 0.05);
-            display: flex; align-items: center; justify-content: center; border: 1px solid var(--surface-border);
+            width: 65px; height: 65px; border-radius: 16px; background: rgba(255, 255, 255, 0.05);
+            display: flex; align-items: center; justify-content: center; border: 1px solid var(--surface-border); transition: 0.3s;
         }
-        .card-img-container i { font-size: 2rem; color: var(--primary); } 
+        .card:hover .card-img-container { transform: scale(1.1); }
+        .card-img-container i { font-size: 1.8rem; } 
 
-        .card-info { flex: 1; }
-        .card-info h3 { font-size: 1.1rem; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
-        .card-info p { color: var(--text-muted); font-size: 0.85rem; }
+        .card-info { flex: 1; overflow: hidden; }
+        .card-info h3 { font-size: 1.1rem; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card-info p { color: var(--text-muted); font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         /* --- Smart Status Badges --- */
         .status-badge {
             display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
             border-radius: 12px; font-size: 0.75rem; font-weight: 700; margin-top: 8px;
-            text-transform: uppercase; letter-spacing: 0.5px;
+            text-transform: uppercase; letter-spacing: 0.5px; transition: 0.3s;
         }
         .status-dot { width: 8px; height: 8px; border-radius: 50%; }
 
-        /* Dynamic Status Classes applied by JS */
         .state-checking { background: rgba(0, 210, 255, 0.1); color: var(--status-checking); }
         .state-checking .status-dot { background: var(--status-checking); box-shadow: 0 0 8px var(--status-checking); animation: blink 1s infinite; }
 
         .state-live { background: rgba(0, 255, 136, 0.1); color: var(--status-live); border: 1px solid rgba(0, 255, 136, 0.2); }
         .state-live .status-dot { background: var(--status-live); box-shadow: 0 0 8px var(--status-live); }
-
-        .state-offline { background: rgba(255, 0, 85, 0.1); color: var(--status-offline); }
-        .state-offline .status-dot { background: var(--status-offline); box-shadow: 0 0 8px var(--status-offline); }
-
-        .state-unsupported { background: rgba(255, 170, 0, 0.1); color: var(--status-unsupported); }
-        .state-unsupported .status-dot { background: var(--status-unsupported); box-shadow: 0 0 8px var(--status-unsupported); }
 
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
@@ -142,7 +139,8 @@
             display: flex; justify-content: space-between; align-items: center; 
             color: var(--text-muted); font-size: 0.9rem; 
         }
-        footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
+        footer a { color: var(--primary); text-decoration: none; font-weight: 600; transition: 0.3s; }
+        footer a:hover { color: var(--text-main); }
         .visitor-counter img { border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 
         @media (max-width: 900px) {
@@ -151,7 +149,7 @@
             .main-content { margin-left: 0; padding-bottom: 100px; }
             .header { flex-direction: column; align-items: flex-start; }
             .search-box { width: 100%; }
-            footer { flex-direction: column; gap: 20px; text-align: center; } /* Footer stacks on mobile */
+            footer { flex-direction: column; gap: 20px; text-align: center; }
         }
     </style>
 </head>
@@ -173,38 +171,34 @@
             </div>
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="Search servers or Live TV...">
+                <input type="text" id="searchInput" placeholder="Search servers, movies, or IPs...">
             </div>
         </header>
 
         <div class="section-header">
             <h2>Live TV Directory</h2>
-            <span class="section-badge" style="background: rgba(0, 255, 136, 0.1); color: #00ff88;">Auto-Checking</span>
+            <span class="section-badge" style="background: rgba(255, 0, 85, 0.1); color: #ff0055;">Live Broadcasts</span>
         </div>
-        <p style="color: var(--text-muted); margin-bottom: 20px;">System automatically verifies if links are supported by your ISP.</p>
         
         <div class="grid" id="tv-grid">
             </div>
 
         <div class="section-header">
             <h2>Core File Servers</h2>
-            <span class="section-badge">Premium</span>
+            <span class="section-badge">Premium Base</span>
         </div>
 
-        <div class="grid">
-            <a href="http://10.16.100.244/" target="_blank" class="card">
-                <div class="card-img-container"><i class="fa-solid fa-server"></i></div>
-                <div class="card-info"><h3>ICC FTP SERVER</h3><p>Fast File Hub</p></div>
-            </a>
-            <a href="http://100.100.100.6:8096" target="_blank" class="card">
-                <div class="card-img-container"><i class="fa-solid fa-film"></i></div>
-                <div class="card-info"><h3>EMBY SERVER</h3><p>Premium Media</p></div>
-            </a>
-            <a href="http://discoveryftp.net/" target="_blank" class="card">
-                <div class="card-img-container"><i class="fa-solid fa-compact-disc"></i></div>
-                <div class="card-info"><h3>Discovery FTP</h3><p>Partner Hub</p></div>
-            </a>
+        <div class="grid" id="core-grid">
+            </div>
+
+        <div class="section-header">
+            <h2>FTP & Movie Servers</h2>
+            <span class="section-badge" style="background: rgba(112, 0, 255, 0.1); color: #b785ff;">BDIX Partners</span>
         </div>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">Download and stream high-quality movies, shows, and software.</p>
+
+        <div class="grid" id="movie-grid">
+            </div>
 
         <footer>
             <div class="copyright">© 2015-2026 Developed by <a href="https://github.com/sohag1192" target="_blank">Md Sohag Rana</a></div>
@@ -218,68 +212,91 @@
     </main>
 
     <script>
-        // --- 1. LIVE TV SERVER DATA ---
+        // --- DATA DIRECTORY ---
+        
         const tvServers = [
-            { name: "Live TV Node 99", url: "http://10.99.99.99/" },
-            { name: "Live TV Web Portal", url: "http://10.16.100.244/live-tv.php" },
-            { name: "HD Broadcast 180", url: "http://172.19.178.180/" },
-            { name: "Main Stream 100", url: "http://100.100.100.2" },
-            { name: "BD IPTV", url: "http://tv.bdiptv.net/" },
-            { name: "IPTV IDN", url: "http://iptvidn.com/" },
-            { name: "Local Stream 3.1", url: "http://172.20.3.1/" },
-            { name: "Stream Port 8090", url: "http://172.16.29.3:8090/" },
-            { name: "Node 29.28", url: "http://172.16.29.28/" },
-            { name: "Node 50.112", url: "http://172.17.50.112/" },
-            { name: "Dugdugi Live", url: "http://dugdugilive.com/" },
-            { name: "Internal TV 10.2", url: "http://10.10.10.2/" },
-            { name: "Internal TV 57.10", url: "http://10.47.57.10/" },
-            { name: "Roarzone TV", url: "https://tv.roarzone.info/" }
+            { name: "Live TV Node 99", url: "http://10.99.99.99/", icon: "fa-satellite-dish" },
+            { name: "Live TV Web Portal", url: "http://10.16.100.244/live-tv.php", icon: "fa-tv" },
+            { name: "HD Broadcast 180", url: "http://172.19.178.180/", icon: "fa-tower-broadcast" },
+            { name: "Main Stream 100", url: "http://100.100.100.2", icon: "fa-podcast" },
+            { name: "BD IPTV", url: "http://tv.bdiptv.net/", icon: "fa-tv" },
+            { name: "IPTV IDN", url: "http://iptvidn.com/", icon: "fa-globe" },
+            { name: "Local Stream 3.1", url: "http://172.20.3.1/", icon: "fa-satellite" },
+            { name: "Stream Port 8090", url: "http://172.16.29.3:8090/", icon: "fa-network-wired" },
+            { name: "Node 29.28", url: "http://172.16.29.28/", icon: "fa-tower-cell" },
+            { name: "Node 50.112", url: "http://172.17.50.112/", icon: "fa-tower-cell" },
+            { name: "Dugdugi Live", url: "http://dugdugilive.com/", icon: "fa-video" },
+            { name: "Internal TV 10.2", url: "http://10.10.10.2/", icon: "fa-tv" },
+            { name: "Internal TV 57.10", url: "http://10.47.57.10/", icon: "fa-tv" },
+            { name: "Roarzone TV", url: "https://tv.roarzone.info/", icon: "fa-cast" }
         ];
 
-        // --- 2. RENDER THE GRID ---
-        const grid = document.getElementById('tv-grid');
+        const coreServers = [
+            { name: "ICC FTP SERVER", url: "http://10.16.100.244/", icon: "fa-server", color: "var(--primary)" },
+            { name: "EMBY SERVER", url: "http://100.100.100.6:8096", icon: "fa-clapperboard", color: "var(--primary)" },
+            { name: "Discovery FTP", url: "http://discoveryftp.net/", icon: "fa-folder-open", color: "var(--primary)" }
+        ];
+
+        const movieServers = [
+            { name: "Moviehaat", url: "http://moviehaat.net/", icon: "fa-film" },
+            { name: "WOW Movies", url: "http://172.27.27.84/", icon: "fa-video" },
+            { name: "Movies World", url: "http://10.10.10.3/", icon: "fa-ticket" },
+            { name: "DhakaFlix", url: "http://172.16.50.4/", icon: "fa-compact-disc" },
+            { name: "FTPBD", url: "https://ftpbd.net/", icon: "fa-hard-drive" },
+            { name: "Showtime", url: "http://showtimebd.com/", icon: "fa-clapperboard" },
+            { name: "BAS Play", url: "http://10.20.30.40/", icon: "fa-play-circle" },
+            { name: "FtpMedia.Live", url: "http://10.1.1.1/", icon: "fa-cloud-arrow-down" },
+            { name: "Circle FTP", url: "https://circleftp.net/", icon: "fa-database" },
+            { name: "TimePassBD", url: "http://timepassbd.live/", icon: "fa-clock" },
+            { name: "11Plus Play", url: "http://play.11plus.live/", icon: "fa-play" },
+            { name: "DDN BD Fun", url: "https://www.ddnbd.fun/", icon: "fa-face-smile" },
+            { name: "CTGMovies", url: "http://ctgmovies.com/", icon: "fa-film" }
+        ];
+
+        // --- RENDER ENGINE ---
         
-        tvServers.forEach((server, index) => {
-            const cardHTML = `
-                <a href="${server.url}" target="_blank" class="card tv-card" data-index="${index}">
-                    <div class="card-img-container"><i class="fa-solid fa-tv"></i></div>
-                    <div class="card-info">
-                        <h3>${server.name}</h3>
-                        <p style="font-size: 0.75rem; opacity:0.6;">${server.url.replace(/^https?:\/\//, '')}</p>
-                        <div class="status-badge state-checking" id="status-${index}">
-                            <div class="status-dot"></div> <span class="status-text">Checking ISP...</span>
+        function renderGrid(containerId, data, typeClass, iconColor) {
+            const container = document.getElementById(containerId);
+            data.forEach((item, index) => {
+                const badgeId = `${containerId}-status-${index}`;
+                // Clean the URL for display purposes
+                const cleanUrl = item.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+                
+                const html = `
+                    <a href="${item.url}" target="_blank" class="card ${typeClass}">
+                        <div class="card-img-container"><i class="fa-solid ${item.icon || 'fa-server'}" style="color: ${item.color || iconColor};"></i></div>
+                        <div class="card-info">
+                            <h3>${item.name}</h3>
+                            <p>${cleanUrl}</p>
+                            <div class="status-badge state-checking" id="${badgeId}">
+                                <div class="status-dot"></div> <span class="status-text">Checking...</span>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            `;
-            grid.insertAdjacentHTML('beforeend', cardHTML);
-        });
-
-        // --- 3. SERVER STATUS SIMULATOR ---
-        setTimeout(() => {
-            document.querySelectorAll('.tv-card').forEach((card, index) => {
-                setTimeout(() => {
-                    const badge = document.getElementById(`status-${index}`);
-                    const text = badge.querySelector('.status-text');
-                    
-                    badge.classList.remove('state-checking');
-                    
-                    const rand = Math.random();
-                    if (rand > 0.4) {
-                        badge.classList.add('state-live');
-                        text.innerText = "Online / Live";
-                    } else if (rand > 0.15) {
-                        badge.classList.add('state-unsupported');
-                        text.innerText = "Not Supported by ISP";
-                    } else {
-                        badge.classList.add('state-offline');
-                        text.innerText = "Server Offline";
-                    }
-                }, index * 300);
+                    </a>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
             });
-        }, 1500);
+        }
 
-        // --- 4. SEARCH BAR ---
+        // Render all 3 sections
+        renderGrid('tv-grid', tvServers, 'tv-card', '#ff0055');
+        renderGrid('core-grid', coreServers, 'core-card', 'var(--primary)');
+        renderGrid('movie-grid', movieServers, 'movie-card', '#b785ff');
+
+        // --- FIXED STATUS ANIMATION ---
+        // Sets everything to Working/Live 100% of the time after 1 second.
+        setTimeout(() => {
+            document.querySelectorAll('.status-badge').forEach((badge, index) => {
+                // Staggered effect looks premium
+                setTimeout(() => {
+                    badge.classList.remove('state-checking');
+                    badge.classList.add('state-live');
+                    badge.querySelector('.status-text').innerText = "Online / Live";
+                }, index * 50); // 50ms delay between each flip
+            });
+        }, 1000);
+
+        // --- SMART SEARCH BAR ---
         document.getElementById('searchInput').addEventListener('keyup', function(e) {
             const term = e.target.value.toLowerCase();
             const cards = document.querySelectorAll('.card');
