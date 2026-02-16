@@ -10,7 +10,6 @@ set "LOCAL_DIR=C:\Users\USER\Downloads\html-cdn-server-list"
 set "REPO_URL=https://github.com/sohag1192/html-cdn-server-list.git"
 set "USER_NAME=sohag1192"
 set "USER_EMAIL=sohag1192@gmail.com"
-set "BRANCH_NAME=main"
 
 :: === NAVIGATE TO LOCAL DIRECTORY ===
 cd /d "%LOCAL_DIR%"
@@ -27,8 +26,18 @@ git config user.email "%USER_EMAIL%"
 :: === INITIALIZE REPO IF NEEDED ===
 if not exist ".git" (
     git init
+)
+
+:: === DETECT DEFAULT BRANCH ===
+for /f "tokens=*" %%i in ('git symbolic-ref --short HEAD 2^>nul') do set "BRANCH_NAME=%%i"
+
+if "%BRANCH_NAME%"=="" (
+    REM If no branch detected, default to main
+    set "BRANCH_NAME=main"
     git branch -M %BRANCH_NAME%
 )
+
+echo 📌 Using branch: %BRANCH_NAME%
 
 :: === ADD ALL CHANGES ===
 git add .
