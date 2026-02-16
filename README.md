@@ -64,7 +64,7 @@ Premium Media Hub seamlessly bridges the gap between traditional live TV, modern
       <td colspan="2" align="center"><b>Mobile UI Optimization</b></td>
     </tr>
     <tr>
-      <td colspan="2" align="center"><img src="img/5.png" alt="Banner 5" width="600"/></td>
+      <td colspan="2" align="center"><img src="img/5.png" alt="Banner 5" width="200"/></td>
     </tr>
   </table>
 </div>
