@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BDIX | Premium BDIX & Media Hub</title>
+    <title>Premium Media Hub | Live TV & BDIX</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     
@@ -11,6 +11,7 @@
         :root {
             --primary: #00f0ff;
             --secondary: #7000ff;
+            --live: #ff0055;
             --bg-base: #0a0a12;
             --surface: rgba(20, 20, 30, 0.6);
             --surface-border: rgba(255, 255, 255, 0.08);
@@ -31,7 +32,7 @@
             position: relative;
         }
 
-        /* Ambient Background Glow */
+        /* Ambient Animated Background Glow */
         body::before, body::after {
             content: ''; position: absolute; width: 600px; height: 600px;
             border-radius: 50%; filter: blur(150px); z-index: -1;
@@ -58,9 +59,7 @@
             font-size: 1.5rem; font-weight: 800; color: white; box-shadow: 0 0 20px rgba(0, 240, 255, 0.4); margin-bottom: 20px;
         }
 
-        .side-link {
-            color: var(--text-muted); font-size: 1.5rem; text-decoration: none; transition: 0.3s;
-        }
+        .side-link { color: var(--text-muted); font-size: 1.5rem; text-decoration: none; transition: 0.3s; }
         .side-link:hover, .side-link.active { color: var(--primary); transform: scale(1.1); }
 
         /* --- Main Layout --- */
@@ -103,6 +102,9 @@
         }
         .card:hover { transform: translateY(-5px); border-color: rgba(0, 240, 255, 0.5); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 240, 255, 0.1); }
         .card:hover::before { left: 100%; }
+        
+        /* Live TV Special Card Hover */
+        .card.live-card:hover { border-color: rgba(255, 0, 85, 0.5); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 0, 85, 0.2); }
 
         /* Image/Icon Container */
         .card-img-container {
@@ -111,7 +113,7 @@
         }
         .card-img-container img { width: 100%; height: 100%; object-fit: contain; padding: 10px; transition: 0.3s; }
         .card:hover .card-img-container img { transform: scale(1.1); }
-        .card-img-container i { font-size: 2rem; color: var(--primary); display: none; } /* Fallback icon */
+        .card-img-container i { font-size: 2.2rem; display: block; } 
 
         .card-info { flex: 1; }
         .card-info h3 { font-size: 1.2rem; margin-bottom: 4px; }
@@ -121,16 +123,22 @@
             display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--success);
             margin-top: 8px; font-weight: 600; letter-spacing: 1px;
         }
+        .status.live { color: var(--live); }
+        
         .status-dot {
             width: 8px; height: 8px; background: var(--success); border-radius: 50%;
             box-shadow: 0 0 8px var(--success); animation: pulse 2s infinite;
         }
+        .status-dot.live-dot { background: var(--live); box-shadow: 0 0 8px var(--live); animation: pulse-live 2s infinite; }
+
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(0, 255, 136, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); } }
+        @keyframes pulse-live { 0% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(255, 0, 85, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0); } }
 
         /* --- Footer --- */
         footer { margin-top: 60px; padding: 30px 0; border-top: 1px solid var(--surface-border); display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.9rem; }
         footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
 
+        /* --- Responsive Design --- */
         @media (max-width: 900px) {
             .sidebar { width: 100%; height: auto; flex-direction: row; justify-content: center; padding: 15px; position: fixed; bottom: 0; top: auto; z-index: 100; border-right: none; border-top: 1px solid var(--surface-border); }
             .brand-icon { display: none; }
@@ -143,9 +151,9 @@
 <body>
 
     <aside class="sidebar">
-        <div class="brand-icon">SN</div>
-        <a href="#" class="side-link active" title="Dashboard"><i class="fa-solid fa-border-all"></i></a>
-        <a href="https://t.me/livetvsteaming" target="_blank" class="side-link" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        <div class="brand-icon"><i class="fa-solid fa-play"></i></div>
+        <a href="/" class="side-link active" title="Dashboard"><i class="fa-solid fa-border-all"></i></a>
+        <a href="https://t.me/+rxYZJ5HfZQA2ZTFl" target="_blank" class="side-link" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
         <a href="https://github.com/sohag1192" target="_blank" class="side-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
         <a href="https://fb.com/MdSohagRana.01/" target="_blank" class="side-link" title="Support"><i class="fa-solid fa-headset"></i></a>
     </aside>
@@ -153,54 +161,70 @@
     <main class="main-content">
         <header class="header">
             <div class="welcome">
-                <h1>BDIX <span>Net</span> Hub</h1>
-                <p>Premium BDIX Network & Media Gateway</p>
+                <h1>Premium <span>Media Hub</span></h1>
+                <p>High-Speed BDIX Network & Media Gateway</p>
             </div>
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="Search servers...">
+                <input type="text" id="searchInput" placeholder="Search servers or Live TV...">
             </div>
         </header>
 
         <div class="section-header">
-            <h2>High Speed Servers</h2>
-            <span class="section-badge">Premium</span>
+            <h2>Live TV Streams</h2>
+            <span class="section-badge" style="background: rgba(255, 0, 85, 0.1); color: #ff0055;">LIVE NOW</span>
         </div>
-        <p style="color: var(--text-muted); margin-bottom: 20px;">Experience buffer-free streaming and lightning-fast downloads.</p>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">Buffer-free, high-definition live television networks.</p>
         
         <div class="grid">
-            <a href="http://100.100.100.2/" target="_blank" class="card">
-                <div class="card-img-container"><img src="images/sntv.png" alt="SN TV" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-tv"></i></div>
-                <div class="card-info"><h3>SN LIVE TV</h3><p>Live TV Network</p><div class="status"><div class="status-dot"></div> <span class="ping-text">1ms</span></div></div>
+            <a href="http://10.99.99.99/" target="_blank" class="card live-card">
+                <div class="card-img-container"><i class="fa-solid fa-tower-broadcast" style="color: #ff0055;"></i></div>
+                <div class="card-info">
+                    <h3>Live TV Network 1</h3>
+                    <p>IPTV Stream</p>
+                    <div class="status live"><div class="status-dot live-dot"></div> <span>LIVE</span></div>
+                </div>
             </a>
-            <a href="http://100.100.100.6" target="_blank" class="card">
-                <div class="card-img-container"><img src="images/snmediaserver.png" alt="SN Media" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-server"></i></div>
-                <div class="card-info"><h3>SN MEDIA SERVER</h3><p>High Speed VOD</p><div class="status"><div class="status-dot"></div> <span class="ping-text">2ms</span></div></div>
+            <a href="http://10.16.100.244/live-tv.php" target="_blank" class="card live-card">
+                <div class="card-img-container"><i class="fa-solid fa-satellite-dish" style="color: #ff0055;"></i></div>
+                <div class="card-info">
+                    <h3>Live TV Network 2</h3>
+                    <p>Web TV Portal</p>
+                    <div class="status live"><div class="status-dot live-dot"></div> <span>LIVE</span></div>
+                </div>
             </a>
-            <a href="http://10.16.100.244/" target="_blank" class="card">
-                <div class="card-img-container"><img src="images/iccftp.png" alt="ICC FTP" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-folder-open"></i></div>
-                <div class="card-info"><h3>ICC FTP SERVER</h3><p>Fast File Hub</p><div class="status"><div class="status-dot"></div> <span class="ping-text">1ms</span></div></div>
-            </a>
-            <a href="http://100.100.100.6:8096" target="_blank" class="card">
-                <div class="card-img-container"><img src="images/snemby.png" alt="SN Emby" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-film"></i></div>
-                <div class="card-info"><h3>SN EMBY SERVER</h3><p>Premium Media</p><div class="status"><div class="status-dot"></div> <span class="ping-text">2ms</span></div></div>
+            <a href="http://172.19.178.180/" target="_blank" class="card live-card">
+                <div class="card-img-container"><i class="fa-solid fa-tv" style="color: #ff0055;"></i></div>
+                <div class="card-info">
+                    <h3>Live TV Network 3</h3>
+                    <p>HD Broadcast</p>
+                    <div class="status live"><div class="status-dot live-dot"></div> <span>LIVE</span></div>
+                </div>
             </a>
         </div>
 
         <div class="section-header">
-            <h2>BDIX Core</h2>
-            <span class="section-badge" style="background: rgba(112, 0, 255, 0.2); color: #b785ff;">Official</span>
+            <h2>Core Servers</h2>
+            <span class="section-badge">Premium</span>
         </div>
-        <p style="color: var(--text-muted); margin-bottom: 20px;">Our core media servers and Content Delivery Networks.</p>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">Primary media servers and Content Delivery Networks.</p>
 
         <div class="grid">
+            <a href="http://10.16.100.244/" target="_blank" class="card">
+                <div class="card-img-container"><i class="fa-solid fa-server" style="color: var(--primary);"></i></div>
+                <div class="card-info"><h3>ICC FTP SERVER</h3><p>Fast File Hub</p><div class="status"><div class="status-dot"></div> <span class="ping-text">1ms</span></div></div>
+            </a>
+            <a href="http://100.100.100.6:8096" target="_blank" class="card">
+                <div class="card-img-container"><i class="fa-solid fa-film" style="color: var(--primary);"></i></div>
+                <div class="card-info"><h3>EMBY SERVER</h3><p>Premium Media</p><div class="status"><div class="status-dot"></div> <span class="ping-text">2ms</span></div></div>
+            </a>
             <a href="http://100.100.100.6:8081" target="_blank" class="card">
-                <div class="card-img-container"><img src="images/sncdn.png" alt="SN CDN" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-cloud-arrow-down"></i></div>
-                <div class="card-info"><h3>SN CDN 1</h3><p>Download Anything</p><div class="status"><div class="status-dot"></div> <span class="ping-text">1ms</span></div></div>
+                <div class="card-img-container"><i class="fa-solid fa-cloud-arrow-down" style="color: var(--primary);"></i></div>
+                <div class="card-info"><h3>CDN Node 1</h3><p>Download Anything</p><div class="status"><div class="status-dot"></div> <span class="ping-text">1ms</span></div></div>
             </a>
             <a href="http://100.100.100.6:8083" target="_blank" class="card">
-                <div class="card-img-container"><img src="images/sncdn.png" alt="SN CDN" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-cloud-arrow-down"></i></div>
-                <div class="card-info"><h3>SN CDN 2</h3><p>Download Anything</p><div class="status"><div class="status-dot"></div> <span class="ping-text">1ms</span></div></div>
+                <div class="card-img-container"><i class="fa-solid fa-cloud-arrow-down" style="color: var(--primary);"></i></div>
+                <div class="card-info"><h3>CDN Node 2</h3><p>Download Anything</p><div class="status"><div class="status-dot"></div> <span class="ping-text">1ms</span></div></div>
             </a>
         </div>
 
@@ -211,30 +235,26 @@
         <p style="color: var(--text-muted); margin-bottom: 20px;">Explore content from our trusted network partners.</p>
 
         <div class="grid">
-            <a href="http://moviehaat.net/" target="_blank" class="card"><div class="card-img-container"><img src="images/moviehaat.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-compact-disc"></i></div><div class="card-info"><h3>Moviehaat</h3><p>Partner Hub</p></div></a>
-            <a href="http://172.27.27.84/" target="_blank" class="card"><div class="card-img-container"><img src="images/wow.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-compact-disc"></i></div><div class="card-info"><h3>WOW</h3><p>Movies</p></div></a>
-            <a href="http://10.10.10.3/" target="_blank" class="card"><div class="card-img-container"><img src="images/moviesworld.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-compact-disc"></i></div><div class="card-info"><h3>Movies World</h3><p>Movies</p></div></a>
-            <a href="http://172.16.50.4/" target="_blank" class="card"><div class="card-img-container"><img src="images/dhakaflix.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-compact-disc"></i></div><div class="card-info"><h3>DhakaFlix</h3><p>Movies & TV</p></div></a>
-            <a href="http://discoveryftp.net/" target="_blank" class="card"><div class="card-img-container"><img src="images/discoveryftp.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-compact-disc"></i></div><div class="card-info"><h3>Discovery FTP</h3><p>Movies & TV</p></div></a>
-            <a href="https://ftpbd.net/" target="_blank" class="card"><div class="card-img-container"><img src="images/ftpbd.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-compact-disc"></i></div><div class="card-info"><h3>FTPBD</h3><p>Download Movies</p></div></a>
-            <a href="http://showtimebd.com/" target="_blank" class="card"><div class="card-img-container"><img src="images/showtime.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-compact-disc"></i></div><div class="card-info"><h3>Showtime</h3><p>Download Movies</p></div></a>
-            <a href="http://10.20.30.40/" target="_blank" class="card"><div class="card-img-container"><img src="images/basplay.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-compact-disc"></i></div><div class="card-info"><h3>BAS Play</h3><p>Watch Movies</p></div></a>
-            <a href="http://10.1.1.1/" target="_blank" class="card"><div class="card-img-container"><img src="images/ftpmedialive.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-compact-disc"></i></div><div class="card-info"><h3>FtpMedia.Live</h3><p>Movies & TV</p></div></a>
-            <a href="https://circleftp.net/" target="_blank" class="card"><div class="card-img-container"><img src="images/circleftp.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-compact-disc"></i></div><div class="card-info"><h3>Circle FTP</h3><p>Movies & Softwares</p></div></a>
-            <a href="http://timepassbd.live/" target="_blank" class="card"><div class="card-img-container"><img src="images/timepassbd.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-compact-disc"></i></div><div class="card-info"><h3>TimePassBD</h3><p>Watch Movies</p></div></a>
-            <a href="http://play.11plus.live/" target="_blank" class="card"><div class="card-img-container"><img src="images/11plusplay.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-compact-disc"></i></div><div class="card-info"><h3>11Plus Play</h3><p>Watch Movies</p></div></a>
-            <a href="https://www.ddnbd.fun/" target="_blank" class="card"><div class="card-img-container"><img src="images/ddnbdfun.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-compact-disc"></i></div><div class="card-info"><h3>DDN BD Fun</h3><p>Movies & Softwares</p></div></a>
-            <a href="http://ctgmovies.com/" target="_blank" class="card"><div class="card-img-container"><img src="images/ctgmovies.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><i class="fa-solid fa-compact-disc"></i></div><div class="card-info"><h3>CTGMovies</h3><p>Watch Movies</p></div></a>
+            <a href="http://moviehaat.net/" target="_blank" class="card"><div class="card-img-container"><i class="fa-solid fa-compact-disc" style="color: var(--secondary);"></i></div><div class="card-info"><h3>Moviehaat</h3><p>Partner Hub</p></div></a>
+            <a href="http://172.27.27.84/" target="_blank" class="card"><div class="card-img-container"><i class="fa-solid fa-compact-disc" style="color: var(--secondary);"></i></div><div class="card-info"><h3>WOW</h3><p>Movies</p></div></a>
+            <a href="http://10.10.10.3/" target="_blank" class="card"><div class="card-img-container"><i class="fa-solid fa-compact-disc" style="color: var(--secondary);"></i></div><div class="card-info"><h3>Movies World</h3><p>Movies</p></div></a>
+            <a href="http://172.16.50.4/" target="_blank" class="card"><div class="card-img-container"><i class="fa-solid fa-compact-disc" style="color: var(--secondary);"></i></div><div class="card-info"><h3>DhakaFlix</h3><p>Movies & TV</p></div></a>
+            <a href="http://discoveryftp.net/" target="_blank" class="card"><div class="card-img-container"><i class="fa-solid fa-compact-disc" style="color: var(--secondary);"></i></div><div class="card-info"><h3>Discovery FTP</h3><p>Movies & TV</p></div></a>
+            <a href="https://ftpbd.net/" target="_blank" class="card"><div class="card-img-container"><i class="fa-solid fa-compact-disc" style="color: var(--secondary);"></i></div><div class="card-info"><h3>FTPBD</h3><p>Download Movies</p></div></a>
+            <a href="http://showtimebd.com/" target="_blank" class="card"><div class="card-img-container"><i class="fa-solid fa-compact-disc" style="color: var(--secondary);"></i></div><div class="card-info"><h3>Showtime</h3><p>Download Movies</p></div></a>
+            <a href="http://10.20.30.40/" target="_blank" class="card"><div class="card-img-container"><i class="fa-solid fa-compact-disc" style="color: var(--secondary);"></i></div><div class="card-info"><h3>BAS Play</h3><p>Watch Movies</p></div></a>
+            <a href="http://10.1.1.1/" target="_blank" class="card"><div class="card-img-container"><i class="fa-solid fa-compact-disc" style="color: var(--secondary);"></i></div><div class="card-info"><h3>FtpMedia.Live</h3><p>Movies & TV</p></div></a>
+            <a href="https://circleftp.net/" target="_blank" class="card"><div class="card-img-container"><i class="fa-solid fa-compact-disc" style="color: var(--secondary);"></i></div><div class="card-info"><h3>Circle FTP</h3><p>Movies & Softwares</p></div></a>
         </div>
 
         <footer>
             <div class="copyright">© 2015-2026 Developed by <a href="https://github.com/sohag1192" target="_blank">Md Sohag Rana</a></div>
-            <div class="isp-brand">Powered by <span style="color: var(--primary); font-weight: bold;">BDIX</span></div>
+            <div class="isp-brand">Powered by <span style="color: var(--primary); font-weight: bold;">Premium Media Network</span></div>
         </footer>
     </main>
 
     <script>
-        // 1. Live Search Filtering
+        // Live Search Filtering
         document.getElementById('searchInput').addEventListener('keyup', function(e) {
             const term = e.target.value.toLowerCase();
             const cards = document.querySelectorAll('.card');
@@ -249,7 +269,7 @@
             });
         });
 
-        // 2. Simulate Dynamic Ping
+        // Simulate Dynamic Ping for Data Servers
         setInterval(() => {
             const pings = document.querySelectorAll('.ping-text');
             pings.forEach(ping => {
