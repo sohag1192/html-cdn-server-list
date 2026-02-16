@@ -1,10 +1,4 @@
 
-
-## 📑 Suggested README Structure
-
-Here’s a polished draft you can use:
-
-```markdown
 # Premium Media Hub
 
 Premium Media Hub is a centralized platform for delivering high-quality entertainment and digital content. It combines streaming, live TV, and premium software access into one seamless hub.
