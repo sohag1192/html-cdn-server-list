@@ -46,9 +46,11 @@ GitHub: [@sohag1192](https://github.com/sohag1192)
 1. Place your 5 images inside the `img/` folder (`img/1.png` … `img/5.png`).
 2. Copy-paste the above README content into your `README.md`.
 3. Commit and push:
+
    ```bash
    git add README.md img/
    git commit -m "Updated README with 5 images"
    git push origin main
    ```
 
+---
