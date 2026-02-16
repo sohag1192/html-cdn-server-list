@@ -4,6 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Media Hub | Live TV & BDIX</title>
+    
+    <meta name="description" content="Premium Media Hub - Access high-speed BDIX networks, Live TV broadcasts, FTP servers, and top-tier movie streaming portals in one place.">
+    <meta name="keywords" content="BDIX, Live TV, FTP Server, Movie Server, IPTV, Media Hub, High-Speed Downloads, DhakaFlix, Moviehaat">
+    <meta name="author" content="Md Sohag Rana">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0a12">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/">
+    <meta property="og:title" content="Premium Media Hub | Live TV & BDIX">
+    <meta property="og:description" content="Access high-speed BDIX networks, Live TV broadcasts, and premium media FTP servers buffer-free.">
+    <meta property="og:image" content="https://yourwebsite.com/images/preview-banner.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourwebsite.com/">
+    <meta property="twitter:title" content="Premium Media Hub | Live TV & BDIX">
+    <meta property="twitter:description" content="Access high-speed BDIX networks, Live TV broadcasts, and premium media FTP servers buffer-free.">
+    <meta property="twitter:image" content="https://yourwebsite.com/images/preview-banner.jpg">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     
@@ -11,7 +32,6 @@
         :root {
             --primary: #00f0ff;
             --secondary: #7000ff;
-            --movie: #ff00ea;
             --bg-base: #0a0a12;
             --surface: rgba(20, 20, 30, 0.6);
             --surface-border: rgba(255, 255, 255, 0.08);
@@ -284,15 +304,13 @@
         renderGrid('movie-grid', movieServers, 'movie-card', '#b785ff');
 
         // --- FIXED STATUS ANIMATION ---
-        // Sets everything to Working/Live 100% of the time after 1 second.
         setTimeout(() => {
             document.querySelectorAll('.status-badge').forEach((badge, index) => {
-                // Staggered effect looks premium
                 setTimeout(() => {
                     badge.classList.remove('state-checking');
                     badge.classList.add('state-live');
                     badge.querySelector('.status-text').innerText = "Online / Live";
-                }, index * 50); // 50ms delay between each flip
+                }, index * 50); 
             });
         }, 1000);
 
