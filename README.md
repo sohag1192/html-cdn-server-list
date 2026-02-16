@@ -1,48 +1,41 @@
 
 
 ## 📖 Repository Overview
-- **Name:** `html-cdn-server-list`
-- **Author:** Md. Sohag Rana
-- **Purpose:** Provides an HTML-based CDN server list.
-- **Demo/Preview:** sohag1192.github.io/html-cdn-server-list [(sohag1192.github.io in Bing)](https://www.bing.com/search?q="https%3A%2F%2Fsohag1192.github.io%2Fhtml-cdn-server-list")
-
----
-
-## 📂 Contents
-- **`assets/`** → Supporting files (first commit).
-- **`images/`** → Image resources (first commit).
-- **`index.html`** → Main HTML file (second commit).
-- **`README.md`** → Basic project description.
+- **Name:** Premium Media Hub  
+- **Author:** Md. Sohag Rana  
+- **Purpose:** A centralized platform for delivering high-quality entertainment and digital content.  
+- **Demo/Preview:** sohag1192.github.io/Premium-Media-Hub [(sohag1192.github.io in Bing)](https://www.bing.com/search?q="https%3A%2F%2Fsohag1192.github.io%2FPremium-Media-Hub%2F")  
 
 ---
 
 ## 📑 README Highlights
-The README is short and states:
-- Project title: **html-cdn-server-list**
-- Description: *“html cdn server”*
-- Author: **MD SOHAG RANA**
-- Mentions:  
-  - `server ftp file`  
-  - `tv live serverfile`  
-  - `html-file-server-list`  
-- Links to the hosted version:  
-  👉 sohag1192.github.io/html-cdn-server-list [(sohag1192.github.io in Bing)](https://www.bing.com/search?q="https%3A%2F%2Fsohag1192.github.io%2Fhtml-cdn-server-list")
+The README describes **Premium Media Hub** as:
+- A platform that combines **streaming, live TV, and premium software access** into one hub.  
+- Focused on **speed, reliability, and style** for modern audiences.  
+- Designed to be **seamless and user-friendly**.  
+
+---
+
+## 📂 Repository Contents
+- **`img/`** → Image resources.  
+- **`index.html`** → Main HTML file.  
+- **`upload_sohag1192.bat`** → Batch script for auto-upload to GitHub.  
+- **`README.md`** → Project description.  
 
 ---
 
 ## 🔧 Tech Stack
 - **Languages:**  
-  - CSS (≈ 87.8%)  
-  - HTML (≈ 12.2%)
+  - HTML (≈ 90.7%)  
+  - Batchfile (≈ 9.3%)  
 
 ---
 
 ## 🚀 Usage
-This repo is essentially a **static HTML + CSS project** that lists CDN servers. You can:
 1. Clone the repo:
    ```bash
-   git clone https://github.com/sohag1192/html-cdn-server-list.git
+   git clone https://github.com/sohag1192/Premium-Media-Hub.git
    ```
-2. Open `index.html` in a browser.
-3. View the hosted version directly via GitHub Pages.
+2. Open `index.html` in a browser.  
+3. Or view the hosted version directly via GitHub Pages.  
 
