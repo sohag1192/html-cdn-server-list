@@ -117,7 +117,7 @@ If you are developing and need to push updates quickly, use the included automat
 
 **Md. Sohag Rana** *Network Engineer & Full-Stack Developer*
 
-<a href="https://github.com/sohag1192"><img src="https://img.shields.io/badge/Git_Hub-you_like-blue" alt="GitHub"/></a>
+<a href="https://github.com/sohag1192"><img src="https://img.shields.io/badge/Github-2CA5E0?style=for-the-badge&logo=git&logoColor=white" alt="GitHub"/></a>
 <a href="https://t.me/sohag1192">
 <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram"/>
 </a>
